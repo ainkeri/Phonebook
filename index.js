@@ -1,8 +1,7 @@
 const { response } = require('express')
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
-
-app.use(express.json())
 
 let persons = [
     {
@@ -26,6 +25,17 @@ let persons = [
         number: "39-23-6423122"
     }
 ]
+
+morgan(requestLogger = (request, response, next) => {
+    console.log('Method:', request.method)
+    console.log('Path:', request.path)
+    console.log('Body:', request.body)
+    console.log('---')
+    next()
+})
+
+app.use(express.json())
+app.use(morgan('tiny'))
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
