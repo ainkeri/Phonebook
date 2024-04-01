@@ -73,8 +73,6 @@ app.delete('/api/persons/:id', (request, response, next) => {
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
-    console.log('PUT request received') // Add this line
-    console.log('Request body:', request.body) // Add this line
     const body = request.body
 
     const person = {
